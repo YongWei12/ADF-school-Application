@@ -53,6 +53,7 @@ public class StudentsImpl extends EntityImpl {
             return vals;
         }
     }
+
     public static final int STUDENTID = AttributesEnum.StudentId.index();
     public static final int STUDENTNAME = AttributesEnum.StudentName.index();
     public static final int STUDENTGENDAR = AttributesEnum.StudentGendar.index();
@@ -67,6 +68,13 @@ public class StudentsImpl extends EntityImpl {
      * This is the default constructor (do not remove).
      */
     public StudentsImpl() {
+    }
+
+    /**
+     * @return the definition object for this instance class.
+     */
+    public static synchronized EntityDefImpl getDefinitionObject() {
+        return EntityDefImpl.findDefObject("model.eo.Students");
     }
 
     /**
@@ -213,6 +221,7 @@ public class StudentsImpl extends EntityImpl {
         setAttributeInternal(STUDENTCREATEDDATE, value);
     }
 
+
     /**
      * @param studentId key constituent
 
@@ -223,13 +232,6 @@ public class StudentsImpl extends EntityImpl {
     }
 
     /**
-     * @return the definition object for this instance class.
-     */
-    public static synchronized EntityDefImpl getDefinitionObject() {
-        return EntityDefImpl.findDefObject("model.eo.Students");
-    }
-
-    /**
      * Add attribute defaulting logic in this method.
      * @param attributeList list of attribute names/values to initialize the row
      */
@@ -237,6 +239,7 @@ public class StudentsImpl extends EntityImpl {
         super.create(attributeList);
         setStudentId(ModelUtil.getSequenceNextVal(getDBTransaction()));
         setStudentGendar("M");
+        setStudentCreatedDate(ModelUtil.getCurrentDate());
     }
 }
 
